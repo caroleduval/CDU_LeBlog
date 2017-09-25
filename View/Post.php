@@ -1,3 +1,4 @@
+<!-- Page Post -->
 <?php $this->titre = "Mon Blog - " . $this->nettoyer($billet['titre']); ?>
 
 <article>

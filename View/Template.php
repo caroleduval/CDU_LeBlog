@@ -5,7 +5,8 @@
 
     <meta charset="utf-8">
     <!-- CDu = issue de dev.ini -->
-    <base href="Projet5" >
+    <base href="/CDu_LeBlog/">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Le blog de Carole DUVAL">
     <meta name="author" content="Carole DUVAL">
@@ -14,24 +15,27 @@
     <title>CDu - Le Blog</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="contenu/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="contenu/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="content/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="contenu/css/clean-blog.min.css" rel="stylesheet">
+    <link href="content/css/clean-blog.min.css" rel="stylesheet">
 
 </head>
 
 <body>
+    <?php echo print_r($_GET);echo print_r($_POST) ?>
 
+    <div class="container-fluid">
+        <div class="container">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="<?= "Accueil"?>"><img src="Contenu/img/logoCDu.png" class="img-responsive" alt="" /></a>
+            <a class="navbar-brand" href=""><img src="Content/img/logoCDu.png" class="img-responsive" alt="" /></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -39,18 +43,19 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= "Accueil"?>">Accueil</a>
+                        <a class="nav-link" href="">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= "Blog"?>">Blog</a>
+                        <a class="nav-link" href="Blog">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= "Formulaire"?>">Créer un article</a>
+                        <a class="nav-link" href="Form">Créer un article</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+            </div>
 
     <!-- Page Header -->
     <header class="masthead" style="background-image: url('Contenu/img/ecranpt2.png')">
@@ -65,6 +70,7 @@
             </div>
         </div>
     </header>
+        </div>
 
     <!-- Main Content -->
     <div id="contenu">
@@ -109,12 +115,18 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="Content/vendor/jquery/jquery.min.js"></script>
+    <script src="Content/vendor/popper/popper.min.js"></script>
+    <script src="Content/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/clean-blog.min.js"></script>
+    <script src="Content/js/clean-blog.min.js"></script>
+    
+    <!-- Contact Form JavaScript -->
+    <script src="Content/js/jqBootstrapValidation.js"></script>
+    <script src="Content/js/contact_me.js"></script>
+
+
 
 </body>
 

@@ -1,4 +1,5 @@
-	<div class="container">
+<!-- Page Blog -->
+<div class="container">
 		<div class="content">
 			<a href="single.html"><img src="images/img2.jpg" class="img-responsive" alt="" /></a>
 			<i class="aeroplane"> </i>
