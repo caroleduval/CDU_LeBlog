@@ -41,38 +41,38 @@ class Post {
     
     // Setters
     
-    public function SetId($id)
+    public function setId($id)
     {
         $id = (int) $id;
         if ($id > 0)
         {$this->_id = $id;}
     }
     
-    public function SetTitle($title)
+    public function setTitle($title)
     {
         if (is_string($title))
         {$this->title = $title;}
     }
     
-    public function SetAuthor($author)
+    public function setAuthor($author)
     {
         if (is_string($author))
         {$this->author = $author;}
     }
     
-    public function standFirst($standfirst)
+    public function setStandFirst($standfirst)
     {
         if (is_string($standfirst))
         {$this->standfirst = $standfirst;}
     }
     
-    public function content($content)
+    public function setContent($content)
     {
         if (is_string($content))
         {$this->content = $content;}
     }
     
-    public function lastModif$content($datemodif)
+    public function setLastModif($datemodif)
     {
         if (chekdate($datemodif))
         {$this->datemodif = date('j F Y',$datemodif);}
