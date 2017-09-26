@@ -40,34 +40,34 @@
                     <form method="post" action="accueil/sendMail">
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
-                                <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Votre nom" id="nom" name="nom" required data-validation-required-message="Please enter your name.">
+                                <label>Nom</label>
+                                <input type="text" class="form-control" placeholder="Votre nom" id="nom" name="nom" required data-validation-required-message="Merci d'entrer votre nom.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
-                                <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Votre prénom" id="prenom" name="prenom" required data-validation-required-message="Please enter your name.">
+                                <label>Prénom</label>
+                                <input type="text" class="form-control" placeholder="Votre prénom" id="prenom" name="prenom" required data-validation-required-message="Merci d'entrer votre prénom.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
-                                <label>Email Address</label>
-                                <input type="email" class="form-control" placeholder="Votre adresse Mail" id="email" name="email" required data-validation-required-message="Please enter your email address.">
+                                <label>Adresse Mail</label>
+                                <input type="email" class="form-control" placeholder="Votre adresse Mail" id="email" name="email" required data-validation-required-message="Merci d'entrer votre adresse e-mail.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
                                 <label>Message</label>
-                                <textarea rows="5" class="form-control" placeholder="Votre message" id="message" name="message" required data-validation-required-message="Please enter a message."></textarea>
+                                <textarea rows="5" class="form-control" placeholder="Votre message" id="message" name="message" required data-validation-required-message="Merci d'entrer votre message."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
-                        <input type="hidden" name="id"/>
-                        <input type="submit" value="Envoyer" />
+                        <input type="hidden"/>
+                        <input class="btn btn-secondary" type="submit" value="Envoyer" />
                     </form>
                 </div>
             </div>

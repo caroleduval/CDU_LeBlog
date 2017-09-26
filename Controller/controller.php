@@ -12,7 +12,7 @@ abstract class Controller
         require 'View/Template.php' ;
     }
     
-    private function genererFichier($donnees)
+    public function genererFichier(array $donnees)
     {
         // Rend les éléments du tableau $donnees accessibles dans la vue
         extract($donnees);
