@@ -2,14 +2,14 @@
 
 // Page Accueil : le contrôleur insère le single.php correspondant à id dans template.php
 
-class ControleurPost
+abstract class Controller
 {
-    public $fichier = "vue/Single.php";
+    public $fichier;
         
     public function genererVue()
     {
         $contenu=self::genererFichier();
-        require 'vue/template.php' ;
+        require 'View/Template.php' ;
     }
     
     private function genererFichier()
@@ -21,4 +21,6 @@ class ControleurPost
         // Arrêt de la temporisation et renvoi du tampon de sortie
         return ob_get_clean();
     }
+    
+    public abstract function index();
 }
