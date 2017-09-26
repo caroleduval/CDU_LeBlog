@@ -1,19 +1,21 @@
 <?php
 
-// Page Accueil : le contrôleur insère le single.php correspondant à id dans template.php
+// Page Accueil : le contrôleur insère la vue correspondant à id dans template.php
 
 abstract class Controller
 {
     public $fichier;
         
-    public function genererVue()
+    public function genererVue ($donnees=[])
     {
-        $contenu=self::genererFichier();
+        $contenu=self::genererFichier($donnees);
         require 'View/Template.php' ;
     }
     
-    private function genererFichier()
+    private function genererFichier($donnees)
     {
+        // Rend les éléments du tableau $donnees accessibles dans la vue
+        extract($donnees);
         // Enclenche la temporisation
         ob_start();
         // Inclut le fichier vue

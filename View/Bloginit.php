@@ -1,5 +1,5 @@
 <!-- Page Blog -->
-<?php
+
 
 foreach ($posts as $post)
 {
@@ -8,7 +8,7 @@ foreach ($posts as $post)
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="post-preview">
-                        <a href=<?php echo "\"Post/index/".$post->id()."\"" ?>>
+                        <a href=<?php echo "\"post/index/".$post->id()."\""; ?>>
                             <h2 class="post-title">
                                 <?php echo $post->title(); ?>
                             </h2>

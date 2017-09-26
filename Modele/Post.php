@@ -9,7 +9,7 @@ class Post {
             $author,
             $standFirst,
             $content,
-            $lastModif
+            $lastModif;
         
     
     public function __construct(array $donnees)
@@ -45,7 +45,7 @@ class Post {
     {
         $id = (int) $id;
         if ($id > 0)
-        {$this->_id = $id;}
+        {$this->id = $id;}
     }
     
     public function setTitle($title)
@@ -60,10 +60,10 @@ class Post {
         {$this->author = $author;}
     }
     
-    public function setStandFirst($standfirst)
+    public function setStandFirst($standFirst)
     {
-        if (is_string($standfirst))
-        {$this->standfirst = $standfirst;}
+        if (is_string($standFirst))
+        {$this->standFirst = $standFirst;}
     }
     
     public function setContent($content)
@@ -72,38 +72,24 @@ class Post {
         {$this->content = $content;}
     }
     
-    public function setLastModif($datemodif)
+    public function setLastModif($lastModif)
     {
-        if (chekdate($datemodif))
-        {$this->datemodif = date('j F Y',$datemodif);}
+        $this->lastModif = $lastModif;
     }
     
-    
-    /** Renvoie la liste des billets du blog
-     * 
-     * @return PDOStatement La liste des billets
-     */
-    public function getPosts() {
-        $sql = 'select BIL_ID as id, BIL_DATE as date,'
-                . ' BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET'
-                . ' order by BIL_ID desc';
-        $posts = $this->executerRequete($sql);
-        return $posts;
+    private function nettoyer($valeur) {
+        return htmlspecialchars($valeur, ENT_QUOTES, 'UTF-8', false);
     }
-    /** Renvoie les informations sur un billet
-     * 
-     * @param int $id L'identifiant du billet
-     * @return array Le billet
-     * @throws Exception Si l'identifiant du billet est inconnu
-     */
-    public function getPost($idBillet) {
-        $sql = 'select BIL_ID as id, BIL_DATE as date,'
-                . ' BIL_TITRE as titre, BIL_CONTENU as contenu from T_BILLET'
-                . ' where BIL_ID=?';
-        $billet = $this->executerRequete($sql, array($idBillet));
-        if ($billet->rowCount() > 0)
-            return $billet->fetch();  // Accès à la première ligne de résultat
-        else
-            throw new Exception("Aucun billet ne correspond à l'identifiant '$idBillet'");
+    
+    public function toArray()
+    {
+        $postArray=array (
+            "id" => $this->id,
+            "title" => $this->title,
+            "author" => $this->author,
+            "standFirst" => $this->standFirst,
+            "content" => $this->content,
+            "lastModif" => $this->lastModif);
+        return $postArray;
     }
 }
