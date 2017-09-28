@@ -14,7 +14,9 @@ abstract class Controller
         require 'View/Template.php' ;
     }
     
-    private function genererFichier()
+
+    public function genererFichier(array $donnees)
+
     {
 
         // Enclenche la temporisation

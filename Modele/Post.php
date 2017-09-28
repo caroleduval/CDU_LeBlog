@@ -88,12 +88,12 @@ class Post {
     public function toArray()
     {
         $postArray=array (
-            "id" => $this->id,
-            "title" => $this->title,
-            "author" => $this->author,
-            "standFirst" => $this->standFirst,
-            "content" => $this->content,
-            "lastModif" => $this->lastModif);
+            "id" => $this->id(),
+            "title" => $this->title(),
+            "author" => $this->author(),
+            "standFirst" => $this->standFirst(),
+            "content" => $this->content(),
+            "lastModif" => $this->lastModif());
         return $postArray;
     }
 }

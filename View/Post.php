@@ -1,27 +1,33 @@
 <!-- Page Post -->
-<?php $this->titre = "Mon Blog - " . $this->nettoyer($billet['titre']); ?>
 
-<article>
-    <header>
-        <h1 class="titreBillet"><?= $this->nettoyer($billet['titre']) ?></h1>
-        <time><?= $this->nettoyer($billet['date']) ?></time>
-    </header>
-    <p><?= $this->nettoyer($billet['contenu']) ?></p>
-</article>
-<hr />
-<header>
-    <h1 id="titreReponses">Réponses à <?= $this->nettoyer($billet['titre']) ?></h1>
+<header class="masthead" style="background-image: url('img/post-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <h1>
+                        <?php echo $attr["title"]; ?>
+                    </h1>
+                    <h2 class="subheading">
+                        <?php echo $attr["standFirst"]; ?>
+                    </h2>
+                    <span class="meta">Edité par <?php echo $attr["author"]; ?>
+                le <?php echo $attr["lastModif"]; ?></span>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
-<?php foreach ($commentaires as $commentaire): ?>
-    <p><?= $this->nettoyer($commentaire['auteur']) ?> dit :</p>
-    <p><?= $this->nettoyer($commentaire['contenu']) ?></p>
-<?php endforeach; ?>
-<hr />
-<form method="post" action="billet/commenter">
-    <input id="auteur" name="auteur" type="text" placeholder="Votre pseudo" 
-           required /><br />
-    <textarea id="txtCommentaire" name="contenu" rows="4" 
-              placeholder="Votre commentaire" required></textarea><br />
-    <input type="hidden" name="id" value="<?= $billet['id'] ?>" />
-    <input type="submit" value="Commenter" />
-</form>
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <?php echo $attr["content"]; ?>
+            </div>
+            <form method="post" action=<?php echo "\"form/update/".$post->id()."\""; ?>>
+                <input type="hidden" name="id"/>
+                <input class="btn btn-secondary" type="submit" value="Modifier cet article" />
+            </form>
+        </div>
+    </div>
+</article>
