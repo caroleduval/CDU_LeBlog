@@ -60,7 +60,9 @@ class Post {
         {$this->author = $author;}
     }
     
+
     public function setStandFirst($standFirst)
+
     {
         if (is_string($standFirst))
         {$this->standFirst = $standFirst;}
@@ -72,7 +74,9 @@ class Post {
         {$this->content = $content;}
     }
     
+
     public function setLastModif($lastModif)
+
     {
         $this->lastModif = $lastModif;
     }
