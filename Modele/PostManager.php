@@ -1,7 +1,5 @@
 <?php
 
-require "Post.php";
-
 class PostManager
 {
     private static $bdd; // Instance de PDO
@@ -36,15 +34,23 @@ class PostManager
         return $posts;
     }
     
+    public function exists($id)
+    {
+        return self::$bdd->query('SELECT COUNT(*) FROM Article WHERE id = '.$id)->fetchColumn();
+    }
+
     public function getPost($id)
     {
-        if (is_int($id))
+        if (self::exists($id))
         {
             $q = self::$bdd->query('SELECT * FROM Article WHERE id = '.$id);
             $donnees = $q->fetch(PDO::FETCH_ASSOC);
+            $q->closeCursor();
             $post = new Post($donnees);
             return $post;
         }
+        else
+        { throw new Exception("Désolée, cet article n'est pas disponible.");}
     }
     public function add(Post $post)
     {
@@ -54,7 +60,8 @@ class PostManager
             'author' => $post->author(),
             'standFirst' => $post->standFirst(),
             'content' => $post->content()));
-        $newId=self::$bdd->lastInsertId();
+        $newId=(self::$bdd->lastInsertId());
+        $q->closeCursor();
         return $newId;
     }
     
@@ -67,5 +74,12 @@ class PostManager
             'standFirst' => $post->standFirst(),
             'content' => $post->content(),
             'id' => $post->id()));
-    } 
+        return $post->id();
+    }
+    
+    public function count()
+    {
+        $nbPosts = self::$bdd->query('SELECT COUNT(*) FROM Article')->fetchColumn();
+        return $nbPosts;
+    }
 }
