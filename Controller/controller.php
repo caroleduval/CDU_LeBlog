@@ -1,6 +1,6 @@
 <?php
 
-// Page Accueil : le contrôleur insère la vue correspondant à id dans template.php
+// Page Accueil : le contrôleur insère le single.php correspondant à id dans template.php
 
 abstract class Controller
 {
@@ -17,8 +17,11 @@ abstract class Controller
     public function message() {return $this->message;}
     public function setMessage($msg) { $this->message=$msg ;}
         
-    public function genererVue ($donnees=[])
+
+=======
+    public function genererVue()
     {
+
         $donnees["messageConfirmation"] = $this->message;
         extract($donnees);
         $contenu=self::genererFichier($donnees);
@@ -27,6 +30,7 @@ abstract class Controller
     
     public function genererFichier($donnees)
     {
+
         // Enclenche la temporisation
         ob_start();
         // Inclut le fichier vue

@@ -2,6 +2,7 @@
 
 // Page Accueil : le contrôleur insère Accueil.php dans template.php
 
+
 class ControllerAccueil extends Controller
 {
     public function index()
