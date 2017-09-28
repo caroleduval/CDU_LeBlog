@@ -2,8 +2,11 @@
 
 // Page Accueil : le contrôleur insère Accueil.php dans template.php
 
+
 require_once "Controller.php";
 require_once "Modele/Mail.php";
+
+
 
 class ControllerAccueil extends Controller
 {

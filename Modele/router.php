@@ -21,7 +21,9 @@ class Router
         
         try
         {
+
             $classeControleur='Controller'.$controleur;
+
             $fichierControleur='Controller/'.$classeControleur.'.php';
             require $fichierControleur;
             $monControleur = new $classeControleur();

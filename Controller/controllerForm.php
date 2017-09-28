@@ -2,9 +2,12 @@
 
 // Page Accueil : le contrôleur insère le formulaire de saisie article dans template.php
 
+
 require_once "Controller.php";
 require_once "ControllerPost.php";
 require_once "Modele/PostManager.php";
+
+
 
 class ControllerForm extends Controller
 {

@@ -2,8 +2,10 @@
 
 // Page Blog : le contrôleur insère la liste détaillée des posts dans template.php
 
+
 require_once "Controller.php";
-require_once "Modele/PostManager.php";
+
+
 
 class ControllerBlog extends Controller
 {
