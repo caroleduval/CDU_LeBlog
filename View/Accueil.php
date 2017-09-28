@@ -4,7 +4,7 @@
 <div class="container" id="mavie">
     <div class="row">
         <div class="col-lg-11 col-md-12 mx-auto">
-            <h1>Mon Parcours</h1>
+            <h1 class="blue">Mon Parcours</h1>
             <div class="row">
                 <div class="col-lg-10 col-md-10 mx-auto">
                     <p>Où je raconte avec moults détails comment j'ai quitté mon travail pour me lancer dans une formation de développement informatique. Le but est bien évidemment de mettre en avant toutes les magnifiques réalisations que j'ai accompli en délaissant totalement l'ambiance complètement dégueulasse des derniers mois de travail. et d'insister lourdement sur l'éclate de cette formation.</p>
@@ -18,7 +18,7 @@
 <div class="container" id="moncv">
     <div class="row">
         <div class="col-lg-11 col-md-12 mx-auto">
-            <h1>Curriculum Vitae</h1>
+            <h1 class="blue">Curriculum Vitae</h1>
 
             <div class="row">
                 <div class="col-lg-10 col-md-10 mx-auto">
@@ -33,22 +33,22 @@
 <div class="container" id="formulairecontact">
     <div class="row">
         <div class="col-lg-11 col-md-12 mx-auto">
-            <h1>Me contacter</h1>
+            <h1 class="blue">Me contacter</h1>
             <div class="row">
                 <div class="col-lg-10 col-md-10 mx-auto">
                     <p>Vous souhaitez m'envoyer un mail pour obtenir des informations supplémentaires ?<br/> Remplissez le formulaire ci-dessous, je me ferai un plaisir de vous répondre !</p>
                     <form method="post" action="accueil/sendMail">
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
-                                <label>Nom</label>
-                                <input type="text" class="form-control" placeholder="Votre nom" id="nom" name="nom" required data-validation-required-message="Merci d'entrer votre nom.">
+                                <label>Prénom</label>
+                                <input type="text" class="form-control" placeholder="Votre prénom" id="prenom" name="prenom" required data-validation-required-message="Merci d'entrer votre prénom.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
-                                <label>Prénom</label>
-                                <input type="text" class="form-control" placeholder="Votre prénom" id="prenom" name="prenom" required data-validation-required-message="Merci d'entrer votre prénom.">
+                                <label>Nom</label>
+                                <input type="text" class="form-control" placeholder="Votre nom" id="nom" name="nom" required data-validation-required-message="Merci d'entrer votre nom.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>

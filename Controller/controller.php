@@ -4,18 +4,29 @@
 
 abstract class Controller
 {
-    public $fichier;
+    public  $fichier,
+            $id,
+            $message="";
+    
+    public function fichier() {return $this->fichier;}
+    public function setFichier($fichier){if(is_string($fichier)){$this->fichier = $fichier;}}  
+    
+    public function id() {return $this->id;}
+    public function setId($id){$id = (int) $id;if ($id > 0){$this->id = $id;}} 
+    
+    public function message() {return $this->message;}
+    public function setMessage($msg) { $this->message=$msg ;}
         
     public function genererVue ($donnees=[])
     {
+        $donnees["messageConfirmation"] = $this->message;
+        extract($donnees);
         $contenu=self::genererFichier($donnees);
         require 'View/Template.php' ;
     }
     
-    public function genererFichier(array $donnees)
+    public function genererFichier($donnees)
     {
-        // Rend les éléments du tableau $donnees accessibles dans la vue
-        extract($donnees);
         // Enclenche la temporisation
         ob_start();
         // Inclut le fichier vue

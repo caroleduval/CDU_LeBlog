@@ -2,8 +2,19 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <p>Gràce à ce formulaire, vous pouvez modifier le titre, le chapô, l'auteur et le contenu de l'article.</p>
-            <form method="post" action="form/record">
+            <p>
+                <?php
+                if(isset($attr))
+                {echo "Gràce à ce formulaire, vous pouvez modifier le titre, le chapô, l'auteur et le contenu de l'article.";}
+                else
+                {echo "Gràce à ce formulaire, vous pouvez créer votre article.";}
+                ?>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 col-md-12 mx-auto">
+            <form method="post" action="form/record/<?php if(isset($attr)){echo $attr["id"];} ?>">
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Titre</label>
@@ -13,7 +24,7 @@
                 </div>
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
-                        <label>Author</label>
+                        <label>Auteur</label>
                         <input type="text" class="form-control" placeholder="Auteur" value="<?php if(isset($attr)){echo $attr["author"];} ?>" id="author" name="author" required data-validation-required-message="Merci de préciser votre identité">
                         <p class="help-block text-danger"></p>
                     </div>
@@ -21,14 +32,14 @@
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Chapô</label>
-                        <input type="text" class="form-control" placeholder="Chapô" value="<?php if(isset($attr)){echo $attr["standFirst"];} ?>" id="standFirst" name="standFirst" required data-validation-required-message="Veuillez rédiger un chapô.">
+                        <textarea rows="3" class="form-control" placeholder="Chapô" id="standFirst" name="standFirst" required data-validation-required-message="Veuillez rédiger un chapô."><?php if(isset($attr)){echo $attr["standFirst"];} ?></textarea>
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Texte</label>
-                        <textarea rows="5" class="form-control" placeholder="Texte" id="content" name="content" required data-validation-required-message="Merci de rédiger votre texte."><?php if(isset($attr)){echo $attr["content"];} ?></textarea>
+                        <textarea rows="10" class="form-control" placeholder="Texte" id="content" name="content" required data-validation-required-message="Merci de rédiger votre texte."><?php if(isset($attr)){echo $attr["content"];} ?></textarea>
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>

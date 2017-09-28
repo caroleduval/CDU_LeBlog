@@ -2,9 +2,6 @@
 
 // Page Accueil : le contrôleur insère Accueil.php dans template.php
 
-require_once "Controller.php";
-require_once "Modele/Mail.php";
-
 class ControllerAccueil extends Controller
 {
     public function index()
@@ -15,7 +12,8 @@ class ControllerAccueil extends Controller
     public function sendMail()
     {
         $monMail= new Mail($_POST);
-        $monMail->envoyerMail();
+        $messageConfirmation=$monMail->envoyerMail();
+        $this->message=$messageConfirmation;
         $this->genererVue();
     }   
 }

@@ -115,7 +115,8 @@ class Mail {
     //==========
 
     //=====Envoi de l'e-mail.
-    mail($this->myMail,$sujet,$content,$mailHeader);
+    $messageConfirmation=(mail($this->myMail,$sujet,$content,$mailHeader)?"Votre message a bien été envoyé.":"Désolée, une erreur est survenue. Merci de réessayer ultérieurement.");
+    return $messageConfirmation;
     //==========
     }
     }

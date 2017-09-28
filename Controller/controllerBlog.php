@@ -2,8 +2,6 @@
 
 // Page Blog : le contrôleur insère la liste détaillée des posts dans template.php
 
-require_once "Controller.php";
-require_once "Modele/PostManager.php";
 
 class ControllerBlog extends Controller
 {
@@ -11,7 +9,7 @@ class ControllerBlog extends Controller
     {
         $PM = new PostManager();
         $posts=$PM->getBlog();
-        extract($posts);
+        extract(array_merge($posts,array("messageConfirmation"=>"")));
         ob_start();
         require $this->fichier;
         $contenu=ob_get_clean();

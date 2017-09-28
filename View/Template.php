@@ -28,32 +28,30 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="container">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand" href=""><img src="Content/img/logoCDu.png" class="img-responsive" alt="" /></a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Blog">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Form">Créer un article</a>
-                    </li>
-                </ul>
+<div class="container-fluid">
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href=""><img src="Content/img/logoCDu.png" class="img-responsive" alt="" /></a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fa fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Blog//1">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Form">Créer un article</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-            </div>
+        </nav>
+    </div>
 
     <!-- Page Header -->
     <header class="masthead" style="background-image: url('Content/img/ecranpt2.png')">
@@ -68,9 +66,18 @@
             </div>
         </div>
     </header>
-        </div>
+</div>
 
     <!-- Main Content -->
+    <?php if(isset($messageConfirmation)) ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-11 col-md-12 mx-auto">
+                <div id="messageconfirmation" class="blue"><?php {echo $messageConfirmation ?></div>
+            </div>
+        </div>
+    </div>
+    <?php  ;} ?>
     <div id="contenu">
         <?= $contenu ?>
     </div> <!-- #contenu -->
