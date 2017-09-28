@@ -13,7 +13,7 @@ class ControllerAccueil extends Controller
     {
         $monMail= new Mail($_POST);
         $messageConfirmation=$monMail->envoyerMail();
-        $this->message=$messageConfirmation;
+        $this->setMessage($messageConfirmation);
         $this->genererVue();
     }   
 }

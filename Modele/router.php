@@ -28,9 +28,7 @@ class Router
         {
             $method = 'set'.ucfirst($key);
             if (method_exists($this, $method))
-            {
-                $this->$method($value);
-            }
+            { $this->$method($value); }
         }
         $this->message();
     }
@@ -54,9 +52,12 @@ class Router
                            
     public function setId($id)
     {
-        $id = (int) $id;
-        if ($id >= 0)
-        {$this->id = $id;}
+        if($id !="")
+        {
+            if (intval($id)<=0)
+            { throw new Exception("Désolée, cette page n'est pas disponible.");}
+        }
+        $this->id = $id;
     }
     
     public function setMessage($msg)
@@ -72,7 +73,7 @@ class Router
          { throw new Exception("Désolée, cette page n'est pas disponible.");}
          require $file;
          $monControleur = new $typeControleur();
-         $monControleur->fichier="View/".$this->controleur.".php";
+         $monControleur->setFichier("View/".$this->controleur.".php");
          $monControleur->setId($this->id); 
          $monControleur->setMessage($this->message);
          $action=$this->action;
@@ -83,7 +84,7 @@ class Router
 
     public static function gererErreur(Exception $exception)
     {
-        extract(array('msgErreur' => $exception->getMessage()));
+        extract(array_merge(array('msgErreur' => $exception->getMessage()),array("messageConfirmation"=>"")));
         ob_start();
         require "View/Erreur.php";
         $contenu=ob_get_clean();

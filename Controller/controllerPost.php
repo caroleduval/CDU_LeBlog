@@ -8,13 +8,13 @@ class ControllerPost extends Controller
     public function index()
     {
         $PM = new PostManager();
-        $id=$this->id;
+        $id=$this->id();
         $post=$PM->getPost($id);
         $attr=$post->toArray();
-        $attr["messageConfirmation"] = $this->message;
+        $attr["messageConfirmation"] = $this->message();
         extract($attr);
         ob_start();
-        require $this->fichier;
+        require $this->fichier();
         $contenu=ob_get_clean();
         require 'View/Template.php';
     }

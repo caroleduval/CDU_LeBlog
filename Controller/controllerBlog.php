@@ -11,7 +11,7 @@ class ControllerBlog extends Controller
         $posts=$PM->getBlog();
         extract(array_merge($posts,array("messageConfirmation"=>"")));
         ob_start();
-        require $this->fichier;
+        require $this->fichier();
         $contenu=ob_get_clean();
         require 'View/Template.php' ;
     }

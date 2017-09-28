@@ -14,12 +14,12 @@ class ControllerForm extends Controller
     public function update()
     {
         $PM = new PostManager();
-        $post=$PM->getPost($this->id);
+        $post=$PM->getPost($this->id());
         $attr=$post->toArray();
-        $attr["messageConfirmation"] = $this->message;
+        $attr["messageConfirmation"] = $this->message();
         extract($attr);
         ob_start();
-        require $this->fichier;
+        require $this->fichier();
         $contenu=ob_get_clean();
         require 'View/Template.php';
     }

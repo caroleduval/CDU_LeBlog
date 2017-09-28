@@ -4,9 +4,9 @@
 
 abstract class Controller
 {
-    public  $fichier,
-            $id,
-            $message="";
+    private  $fichier;
+    private  $id;
+    private  $message="";
     
     public function fichier() {return $this->fichier;}
     public function setFichier($fichier){if(is_string($fichier)){$this->fichier = $fichier;}}  
@@ -30,7 +30,7 @@ abstract class Controller
         // Enclenche la temporisation
         ob_start();
         // Inclut le fichier vue
-        require $this->fichier;
+        require $this->fichier();
         // Arrêt de la temporisation et renvoi du tampon de sortie
         return ob_get_clean();
     }
