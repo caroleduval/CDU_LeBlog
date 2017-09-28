@@ -1,5 +1,7 @@
 <?php
 
+require "Post.php";
+
 class PostManager
 {
     private static $bdd; // Instance de PDO
@@ -19,23 +21,22 @@ class PostManager
         }
         return self::$bdd;
     }
+
     
-    public function add(Post $post)
+
+    public function getBlog()
     {
-        $q = self::$bdd->prepare('INSERT INTO Article(title, author, standFirst, content, lastModif) VALUES(:title, :author, :standFirst, :content, :lastModif)');
-        $q->bindValue(':title', $post->title(),
-                     ':author', $post->author(),
-                     ':standFirst', $post->standFirst(),
-                     ':content', $post->content(),
-                      ':lastModif', now());
-        $q->execute();
-        $post->hydrate([
-            'id' => $this->_db->lastInsertId(),
-            'degats' => 0,
-        ]);
+        $posts=[];
+        $q = self::$bdd->query('SELECT id, title, lastModif, standFirst FROM Article ORDER BY id');
+        while ($donnees=$q->fetch(PDO::FETCH_ASSOC))
+        {
+            $posts[]=new Post($donnees);
+        }
+        return $posts;
     }
     
-    public function count()
+   /*** 
+       public function count()
     {
         return self::$bdd->query('SELECT COUNT(*) FROM Article')->fetchColumn();
     }
@@ -56,24 +57,32 @@ class PostManager
         }
     }
     
-    public function getBlog()
-    {
-        $posts = [];
-        $q = self::$bdd->prepare('SELECT * FROM Article ORDER BY id');
-        $q->execute([':nom' => $nom]);
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
-        {
-            $posts[] = new Post($donnees);
-        }
-        return $post;
-    }
-    
-    public function update(Post $post)
+   
+   
+   public function update(Post $post)
     {
         $q = self::$bdd->prepare('UPDATE Article SET title = :title WHERE id = :id');
         $q->bindValue(':title', $post->title(), PDO::PARAM_INT);
         $q->bindValue(':id', $post->id(), PDO::PARAM_INT);
         $q->execute();
     }
+    
+    
+        
+    public function add(Post $post)
+    {
+        $q = self::$bdd->prepare('INSERT INTO Article(title, author, standFirst, content, lastModif) VALUES(:title, :author, :standFirst, :content, :lastModif)');
+        $q->bindValue(':title', $post->title(),
+                     ':author', $post->author(),
+                     ':standFirst', $post->standFirst(),
+                     ':content', $post->content(),
+                      ':lastModif', now());
+        $q->execute();
+        $post->hydrate([
+            'id' => $this->_db->lastInsertId(),
+            'degats' => 0,
+        ]);
+    }
+    */
     
 }

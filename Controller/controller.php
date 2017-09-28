@@ -6,6 +6,8 @@ abstract class Controller
 {
     public $fichier;
         
+
+=======
     public function genererVue()
     {
         $contenu=self::genererFichier();
@@ -14,6 +16,7 @@ abstract class Controller
     
     private function genererFichier()
     {
+
         // Enclenche la temporisation
         ob_start();
         // Inclut le fichier vue
