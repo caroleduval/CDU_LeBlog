@@ -26,8 +26,9 @@ class ControllerForm extends Controller
     
     public function record()
     {
+        if ($_POST["title"]=="" || $_POST["author"]=="" || $_POST["standFirst"]=="" ||$_POST["content"]=="")
+        { throw new Exception("Désolée, tous les champs de saisie doivent être renseignés.");}
         $post= new Post($_POST);
-        $PM = new PostManager();
         if(($_GET["id"])=="")
         {
             $id=$PM->add($post);

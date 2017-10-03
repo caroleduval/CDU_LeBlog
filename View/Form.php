@@ -14,7 +14,7 @@
     </div>
     <div class="row">
         <div class="col-lg-10 col-md-12 mx-auto">
-            <form method="post" action="form/record/<?php if(isset($attr)){echo $attr["id"];} ?>">
+            <form id="contactForm" method="post" action="form/record/<?php if(isset($attr)){echo $attr["id"];} ?>">
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
                         <label>Titre</label>

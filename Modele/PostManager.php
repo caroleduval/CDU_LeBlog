@@ -3,6 +3,7 @@
 class PostManager
 {
     private static $bdd; // Instance de PDO
+    private $nbPages;
     
     public function __construct()
     {
@@ -20,12 +21,18 @@ class PostManager
         return self::$bdd;
     }
 
-    
+    public function nbPages() {return $this->nbPages;}
+    public function setNbPages($nbPages){$nbPages = (int) $nbPages;if ($nbPages > 0){$this->nbPages = $nbPages ;}} 
 
-    public function getBlog()
+    public function getBlog($pageDde,$nbPostsParPage)
     {
+        $nbPosts=self::count();
+        $this->setNbPages(ceil($nbPosts/$nbPostsParPage));
+        if($pageDde>$this->nbPages) // Si le numéro de page demandée est supérieur au nb de pages existantes
+        { throw new Exception("Désolée, cette page n'est pas disponible.");}
+        $post1 = ($pageDde-1)*$nbPostsParPage;
         $posts=[];
-        $q = self::$bdd->query('SELECT id, title, lastModif, standFirst FROM Article ORDER BY id DESC');
+        $q = self::$bdd->query('SELECT id, title, lastModif, standFirst FROM Article ORDER BY id DESC LIMIT '.$post1.', '.$nbPostsParPage.'');
         while ($donnees=$q->fetch(PDO::FETCH_ASSOC))
         {
             $posts[]=new Post($donnees);

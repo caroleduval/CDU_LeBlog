@@ -37,7 +37,20 @@
             <div class="row">
                 <div class="col-lg-10 col-md-10 mx-auto">
                     <p>Vous souhaitez m'envoyer un mail pour obtenir des informations supplémentaires ?<br/> Remplissez le formulaire ci-dessous, je me ferai un plaisir de vous répondre !</p>
-                    <form method="post" action="accueil/sendMail">
+                    
+ <!-- Page Accueil                  <form name="sentMessage" id="contactForm" novalidate>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>-->  
+                    
+                    
+                    
+                    
+                    <form name="sentMessage"  id="contactForm" method="post" action="accueil/sendMail" novalidate>
                         <div class="control-group">
                             <div class="form-group floating-label-form-group controls">
                                 <label>Prénom</label>

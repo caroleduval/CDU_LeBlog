@@ -17,6 +17,8 @@ class Mail {
     
     public function hydrate(array $donnees)
     {
+        if ($donnees["prenom"]=="" || $donnees["nom"]=="" || $donnees["email"]=="" || $donnees["message"]=="")
+        { throw new Exception("Désolée, tous les champs de saisie doivent être renseignés.");}
         foreach ($donnees as $key => $value)
         {
             $method = 'set'.ucfirst($key);
