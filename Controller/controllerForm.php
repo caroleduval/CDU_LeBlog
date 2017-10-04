@@ -1,8 +1,10 @@
 <?php
 
-// Page Accueil : le contrôleur insère le formulaire de saisie article dans template.php
+// Page Form : le contrôleur insère le formulaire de saisie article dans template.php
+// vide quand il faut créer un article ou pré-rempli, s'il s'agit de modifier un post existant
 
-
+require "Controller.php";
+require "Modele/PostManager.php";
 
 class ControllerForm extends Controller
 {
@@ -14,14 +16,8 @@ class ControllerForm extends Controller
     public function update()
     {
         $PM = new PostManager();
-        $post=$PM->getPost($this->id());
-        $attr=$post->toArray();
-        $attr["messageConfirmation"] = $this->message();
-        extract($attr);
-        ob_start();
-        require $this->fichier();
-        $contenu=ob_get_clean();
-        require 'View/Template.php';
+        $post=array('post'=>$PM->getPost($this->id()));
+        $this->genererVue($post);
     }
     
     public function record()
@@ -29,11 +25,11 @@ class ControllerForm extends Controller
         if ($_POST["title"]=="" || $_POST["author"]=="" || $_POST["standFirst"]=="" ||$_POST["content"]=="")
         { throw new Exception("Désolée, tous les champs de saisie doivent être renseignés.");}
         $post= new Post($_POST);
+        $PM = new PostManager();
         if(($_GET["id"])=="")
         {
             $id=$PM->add($post);
             $messageConfirmation="Votre article a été publié sur le blog.";
-
         }
         else
         {

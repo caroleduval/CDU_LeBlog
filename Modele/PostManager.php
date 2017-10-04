@@ -1,4 +1,5 @@
 <?php
+require "Post.php";
 
 class PostManager
 {
@@ -14,9 +15,12 @@ class PostManager
     {
         if (self::$bdd === null)
         {
-            // Création de la connexion
-            self::$bdd = new PDO('mysql:host=localhost;dbname=CDu_LeBlog', 'root', 'root',
-                    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $host_name = 'db701137160.db.1and1.com';
+            $database = 'db701137160';
+            $user_name = 'dbo701137160';
+            $password = 'Kdu77b30$';
+            self::$bdd  = new PDO("mysql:host=$host_name; dbname=$database;charset=UTF8", $user_name, $password,
+                array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         return self::$bdd;
     }
@@ -32,7 +36,7 @@ class PostManager
         { throw new Exception("Désolée, cette page n'est pas disponible.");}
         $post1 = ($pageDde-1)*$nbPostsParPage;
         $posts=[];
-        $q = self::$bdd->query('SELECT id, title, lastModif, standFirst FROM Article ORDER BY id DESC LIMIT '.$post1.', '.$nbPostsParPage.'');
+        $q = self::$bdd->query('SELECT id, title, DATE_FORMAT(lastModif, \'%d/%m/%Y à %H:%i\') AS lastModif, standFirst FROM Post ORDER BY id DESC LIMIT '.$post1.', '.$nbPostsParPage.'');
         while ($donnees=$q->fetch(PDO::FETCH_ASSOC))
         {
             $posts[]=new Post($donnees);
@@ -43,14 +47,14 @@ class PostManager
     
     public function exists($id)
     {
-        return self::$bdd->query('SELECT COUNT(*) FROM Article WHERE id = '.$id)->fetchColumn();
+        return self::$bdd->query('SELECT COUNT(*) FROM Post WHERE id = '.$id)->fetchColumn();
     }
 
     public function getPost($id)
     {
         if (self::exists($id))
         {
-            $q = self::$bdd->query('SELECT * FROM Article WHERE id = '.$id);
+            $q = self::$bdd->query('SELECT id, title, author, standFirst, content, DATE_FORMAT(lastModif, \'%d/%m/%Y à %H:%i\') AS lastModif FROM Post WHERE id = '.$id);
             $donnees = $q->fetch(PDO::FETCH_ASSOC);
             $q->closeCursor();
             $post = new Post($donnees);
@@ -61,7 +65,7 @@ class PostManager
     }
     public function add(Post $post)
     {
-        $q = self::$bdd->prepare('INSERT INTO Article(title, author, standFirst, content, lastModif) VALUES(:title, :author, :standFirst, :content, NOW())');
+        $q = self::$bdd->prepare('INSERT INTO Post (title, author, standFirst, content, lastModif) VALUES(:title, :author, :standFirst, :content, NOW())');
         $q->execute(array(
             'title' => $post->title(),
             'author' => $post->author(),
@@ -74,7 +78,7 @@ class PostManager
     
     public function update(Post $post)
     {
-        $q = self::$bdd->prepare('UPDATE Article SET title = :title, author = :author, standFirst =:standFirst, content = :content, lastModif = NOW() WHERE id = :id');
+        $q = self::$bdd->prepare('UPDATE Post SET title = :title, author = :author, standFirst =:standFirst, content = :content, lastModif = NOW() WHERE id = :id');
         $q->execute(array(
             'title' => $post->title(),
             'author' => $post->author(),
@@ -86,7 +90,7 @@ class PostManager
     
     public function count()
     {
-        $nbPosts = self::$bdd->query('SELECT COUNT(*) FROM Article')->fetchColumn();
+        $nbPosts = self::$bdd->query('SELECT COUNT(*) FROM Post')->fetchColumn();
         return $nbPosts;
     }
 }

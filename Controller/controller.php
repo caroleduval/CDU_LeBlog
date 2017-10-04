@@ -1,6 +1,6 @@
 <?php
 
-// Page Accueil : le contrôleur insère la vue correspondant à id dans template.php
+// Classe mère des Controllers
 
 abstract class Controller
 {
@@ -16,17 +16,17 @@ abstract class Controller
     
     public function message() {return $this->message;}
     public function setMessage($msg) { $this->message=$msg ;}
-        
-    public function genererVue ($donnees=[])
+
+    public function genererVue (array $posts=[])
     {
-        $donnees["messageConfirmation"] = $this->message;
-        extract($donnees);
-        $contenu=self::genererFichier($donnees);
+        $posts["messageConfirmation"] = $this->message;
+        $contenu=self::genererFichier($posts);
         require 'View/Template.php' ;
     }
     
-    public function genererFichier($donnees)
+    public function genererFichier($posts=[])
     {
+        extract($posts);
         // Enclenche la temporisation
         ob_start();
         // Inclut le fichier vue

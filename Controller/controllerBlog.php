@@ -1,22 +1,22 @@
 <?php
 
-// Page Blog : le contrôleur insère la liste détaillée des posts dans template.php
+// Page Blog : le contrôleur insère une liste détaillée de 4 posts dans template.php
+
+require "Controller.php";
+require "Modele/PostManager.php";
 
 
 class ControllerBlog extends Controller
 {
-    private $nbPostsParPage = 2 ;
+    private $nbPostsParPage = 4 ;
     
     public function index()
     {
         $pageDde = $_GET["id"];
         $PM = new PostManager();
-        $posts=$PM->getBlog($pageDde,$this->nbPostsParPage);
+        $posts=array('posts'=>$PM->getBlog($pageDde,$this->nbPostsParPage));
         $nbPages=$PM->nbPages();
-        extract(array_merge($posts,array("nbPages"=>$nbPages,"pageDde"=>$pageDde),array("messageConfirmation"=>"")));
-        ob_start();
-        require $this->fichier();
-        $contenu=ob_get_clean();
-        require 'View/Template.php' ;
+        $posts["nbPages"] = $nbPages;
+        $this->genererVue($posts);
     }
 }

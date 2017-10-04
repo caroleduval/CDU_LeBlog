@@ -3,12 +3,14 @@
 /** Récupère les infos url pour définir l'action à entreprendre
 * - Controleur Accueil    + Action Index        => Affichage de la page d'Accueil
 * - Controleur Accueil    + Action SendMail     => Envoi du message de contact + Affiche la page d'accueil avec confirmation
-* - Controleur Blog       + Action Index        => Affichage de la page de Blog
+* - Controleur Blog       + Action Index  + id  => Affichage de la page n°id du Blog
 * - Controleur Post       + Action Index  + id  => Affichage de l'article de l'id sélectionné
 * - Controleur Formulaire + Action Index        => Affichage du formulaire Article vide pour création
 * - Controleur Formulaire + Action Update + id  => Affichage du formulaire Article prérempli pour modification d'un article existant
 * - Controleur Formulaire + Action record       => enregistrement dans la base de données soit en update (si id) soit en insert
 */
+
+
 
 class Router
 {
@@ -40,6 +42,7 @@ class Router
     
     public function setControleur($controleur)
     {
+        
         $controleur=($controleur==""?"Accueil":ucfirst(strtolower($controleur)));
         $this->controleur=$controleur;
     }
@@ -76,7 +79,8 @@ class Router
          $monControleur->setFichier("View/".$this->controleur.".php");
          $monControleur->setId($this->id); 
          $monControleur->setMessage($this->message);
-         $action=$this->action;
+         $action=$this->action();
+
          if (!method_exists($monControleur, $action))
          { throw new Exception("Désolée, cette page n'est pas disponible.");}
          $monControleur->$action();
