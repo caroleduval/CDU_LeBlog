@@ -1,4 +1,5 @@
 <!-- Page Blog -->
+
 <?php
 
 foreach ($posts as $post)
@@ -34,9 +35,4 @@ foreach ($posts as $post)
         <?php ;} ?>
     </div>
 </div> 
-
-
-
-
-
 

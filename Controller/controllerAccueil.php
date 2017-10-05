@@ -6,6 +6,7 @@
 require "Controller.php";
 require "Modele/Mail.php";
 
+
 class ControllerAccueil extends Controller
 {
     public function index()

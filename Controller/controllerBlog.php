@@ -6,6 +6,7 @@ require "Controller.php";
 require "Modele/PostManager.php";
 
 
+
 class ControllerBlog extends Controller
 {
     private $nbPostsParPage = 4 ;

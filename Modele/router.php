@@ -57,6 +57,7 @@ class Router
     {
         if($id !="")
         {
+
             if (intval($id)<=0)
             { throw new Exception("Désolée, cette page n'est pas disponible.");}
         }

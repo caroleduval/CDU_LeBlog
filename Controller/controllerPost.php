@@ -6,6 +6,7 @@
 Require_once "Controller.php";
 Require_once "Modele/PostManager.php";
 
+
 class ControllerPost extends Controller
 {
     public function index()
