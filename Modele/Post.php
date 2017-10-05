@@ -81,19 +81,8 @@ class Post {
         $this->lastModif = $lastModif;
     }
     
-    private function nettoyer($valeur) {
+    public function nettoyer($valeur) {
         return htmlspecialchars($valeur, ENT_QUOTES, 'UTF-8', false);
     }
-    
-    public function toArray()
-    {
-        $postArray=array (
-            "id" => $this->id(),
-            "title" => $this->title(),
-            "author" => $this->author(),
-            "standFirst" => $this->standFirst(),
-            "content" => $this->content(),
-            "lastModif" => $this->lastModif());
-        return $postArray;
-    }
+
 }

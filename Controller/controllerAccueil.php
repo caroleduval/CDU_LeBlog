@@ -1,6 +1,10 @@
 <?php
 
 // Page Accueil : le contrôleur insère Accueil.php dans template.php
+// + un message de confirmation si envoi de mail
+
+require "Controller.php";
+require "Modele/Mail.php";
 
 
 class ControllerAccueil extends Controller

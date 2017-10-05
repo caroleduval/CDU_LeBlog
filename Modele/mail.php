@@ -17,6 +17,8 @@ class Mail {
     
     public function hydrate(array $donnees)
     {
+        if ($donnees["prenom"]=="" || $donnees["nom"]=="" || $donnees["email"]=="" || $donnees["message"]=="")
+            { throw new Exception("Désolée, tous les champs de saisie doivent être renseignés.");}
         foreach ($donnees as $key => $value)
         {
             $method = 'set'.ucfirst($key);
@@ -30,18 +32,13 @@ class Mail {
     // Getters
     
     public function myMail() {return $this->myMail;}
+    public function myName() {return $this->myName;}
     public function prenom() {return $this->prenom;}
     public function nom() {return $this->nom;}
     public function email() {return $this->email;}
     public function message() {return $this->message;}
     
     // Setters
-    
-    public function SetMyMail($myMail)
-    {
-        if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $myMail))
-        {$this->myMail = $myMail;}
-    }
     
     public function SetPrenom($prenom)
     {
@@ -92,7 +89,7 @@ class Mail {
 
     //=====Création du header de l'e-mail.
     $mailHeader = "From: \"".$this->prenom." ".$this->nom."\"<".$this->email.">".$passage_ligne;
-    $mailHeader.= "Reply-to: \"".$this->myName."\" <".$this->myMail.">".$passage_ligne;
+    $mailHeader.= "Reply-to: \"".$this->myName()."\" <".$this->myMail().">".$passage_ligne;
     $mailHeader.= "MIME-Version: 1.0".$passage_ligne;
     $mailHeader.= "Content-Type: multipart/alternative;".$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
     //==========
@@ -100,13 +97,13 @@ class Mail {
     //=====Création du message.
     $content = $passage_ligne."--".$boundary.$passage_ligne;
     //=====Ajout du message au format texte.
-    $content.= "Content-Type: text/plain; charset=\"ISO-8859-1\"".$passage_ligne;
+    $content.= "Content-Type: text/plain; charset=\"UTF-8\"".$passage_ligne;
     $content.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
     $content.= $passage_ligne.$message_txt.$passage_ligne;
     //==========
     $content.= $passage_ligne."--".$boundary.$passage_ligne;
     //=====Ajout du message au format HTML
-    $content.= "Content-Type: text/html; charset=\"ISO-8859-1\"".$passage_ligne;
+    $content.= "Content-Type: text/html; charset=\"UTF-8\"".$passage_ligne;
     $content.= "Content-Transfer-Encoding: 8bit".$passage_ligne;
     $content.= $passage_ligne.$message_html.$passage_ligne;
     //==========
@@ -115,8 +112,8 @@ class Mail {
     //==========
 
     //=====Envoi de l'e-mail.
-    $messageConfirmation=(mail($this->myMail,$sujet,$content,$mailHeader)?"Votre message a bien été envoyé.":"Désolée, une erreur est survenue. Merci de réessayer ultérieurement.");
+    $messageConfirmation=(mail($this->myMail(),$sujet,$content,$mailHeader)?"Votre message a bien été envoyé.":"Désolée, une erreur est survenue. Merci de réessayer ultérieurement.");
     return $messageConfirmation;
     //==========
     }
-    }
+}
